@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using UnityEngine;
+﻿using System.Linq;
 
 #if UNITY_EDITOR
 
@@ -16,7 +12,7 @@ public class TemplateEditorDetection : Editor {
 
         //Get the current definition symbols
         string currentDefineSymbols = PlayerSettings.GetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup);
-        List<string> allDefineSymbols = currentDefineSymbols.Split(';').ToList();
+        var allDefineSymbols = currentDefineSymbols.Split(';').ToList();
 
         //Template core namespace classes used for detection
         var platformer = System.Type.GetType("Platformer.Core.Simulation", false);
@@ -24,9 +20,9 @@ public class TemplateEditorDetection : Editor {
         var ballgame = System.Type.GetType("TeamBallGame.Simulation", false);
 
         //Template definition symbols for use with #if
-        var platformerDefine = "UNITY_TEMPLATE_PLATFORMER";
-        var kartDefine = "UNITY_TEMPLATE_KART";
-        var ballgameDefine = "UNITY_TEMPLATE_BALLGAME";
+        string platformerDefine = "UNITY_TEMPLATE_PLATFORMER";
+        string kartDefine = "UNITY_TEMPLATE_KART";
+        string ballgameDefine = "UNITY_TEMPLATE_BALLGAME";
 
         //add the define symbols if we are in a specific template, if they don't exist already
         if (platformer != null && !allDefineSymbols.Contains(platformerDefine)) { allDefineSymbols.Add(platformerDefine); }

@@ -1,22 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Platformer.Mechanics;
+﻿using Platformer.Mechanics;
 using UnityEditor;
 using UnityEngine;
-namespace Platformer
-{
+namespace Platformer {
     [CustomEditor(typeof(PatrolPath))]
-    public class PatrolPathGizmo : Editor
-    {
-        public void OnSceneGUI()
-        {
+    public class PatrolPathGizmo : Editor {
+        public void OnSceneGUI() {
             var path = target as PatrolPath;
-            using (var cc = new EditorGUI.ChangeCheckScope())
-            {
+            using (var cc = new EditorGUI.ChangeCheckScope()) {
                 var sp = path.transform.InverseTransformPoint(Handles.PositionHandle(path.transform.TransformPoint(path.startPosition), path.transform.rotation));
                 var ep = path.transform.InverseTransformPoint(Handles.PositionHandle(path.transform.TransformPoint(path.endPosition), path.transform.rotation));
-                if (cc.changed)
-                {
+                if (cc.changed) {
                     sp.y = 0;
                     ep.y = 0;
                     path.startPosition = sp;
@@ -27,8 +20,7 @@ namespace Platformer
         }
 
         [DrawGizmo(GizmoType.Selected | GizmoType.NonSelected)]
-        static void OnDrawGizmo(PatrolPath path, GizmoType gizmoType)
-        {
+        private static void OnDrawGizmo(PatrolPath path, GizmoType gizmoType) {
             var start = path.transform.TransformPoint(path.startPosition);
             var end = path.transform.TransformPoint(path.endPosition);
             Handles.color = Color.yellow;

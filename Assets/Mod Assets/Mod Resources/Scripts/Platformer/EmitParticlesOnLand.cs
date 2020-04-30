@@ -1,21 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.Reflection;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(ParticleSystem))]
-public class EmitParticlesOnLand : MonoBehaviour
-{
+public class EmitParticlesOnLand : MonoBehaviour {
 
     public bool emitOnLand = true;
     public bool emitOnEnemyDeath = true;
 
 #if UNITY_TEMPLATE_PLATFORMER
 
-    ParticleSystem p;
+    private ParticleSystem p;
 
-    void Start()
-    {
+    private void Start() {
         p = GetComponent<ParticleSystem>();
 
         if (emitOnLand) {
