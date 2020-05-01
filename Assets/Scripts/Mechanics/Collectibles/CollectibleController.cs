@@ -54,8 +54,17 @@ namespace Platformer.Mechanics {
                 case HealthyRestoreHelthCollectible _: {
                         return GetRandomOrDefault(_healtyRestore, _noSprite);
                     }
+                case HealtyMaxSpeedCollectible _: {
+                        return GetRandomOrDefault(_healtyFast, _noSprite);
+                    }
+                case HealthyMaxJumpCollectible _: {
+                        return GetRandomOrDefault(_healtyLight, _noSprite);
+                    }
                 case BadDamageHelthCollectible _: {
                         return GetRandomOrDefault(_badMinusHealth, _noSprite);
+                    }
+                case BadMaxJumpCollectible _: {
+                        return GetRandomOrDefault(_badHeavy, _noSprite);
                     }
                 default: return _noSprite;
             }
