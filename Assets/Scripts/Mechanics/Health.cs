@@ -17,6 +17,7 @@ namespace Platformer.Mechanics {
         /// </summary>
         public bool IsAlive => currentHP > 0;
 
+        [SerializeField]
         private int currentHP;
 
         /// <summary>

@@ -10,7 +10,7 @@ namespace Platformer.Mechanics {
 
         [SerializeField]
         private Sprite _noSprite;
-        
+
         [Header("Healthy Collectibles")]
         [SerializeField]
         private Sprite[] _healtyCollect;
@@ -20,7 +20,7 @@ namespace Platformer.Mechanics {
         private Sprite[] _healtyLight;
         [SerializeField]
         private Sprite[] _healtyRestore;
-        
+
         [Header("Bad Collectibles")]
         [SerializeField]
         private Sprite[] _badHeavy;
@@ -50,6 +50,12 @@ namespace Platformer.Mechanics {
             switch (collectible) {
                 case HealthyPointsCollectible _: {
                         return GetRandomOrDefault(_healtyCollect, _noSprite);
+                    }
+                case HealthyRestoreHelthCollectible _: {
+                        return GetRandomOrDefault(_healtyRestore, _noSprite);
+                    }
+                case BadDamageHelthCollectible _: {
+                        return GetRandomOrDefault(_badMinusHealth, _noSprite);
                     }
                 default: return _noSprite;
             }

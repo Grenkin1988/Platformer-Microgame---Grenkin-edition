@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2785308699935090170}
   - component: {fileID: 2785308699935090171}
   m_Layer: 0
-  m_Name: HealthyPointsCollectible2
+  m_Name: HealthyPointsCollectible
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2785308699935090173}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d9ccfdb57516b546961824bfd6c24ae, type: 3}
+  m_Script: {fileID: 11500000, guid: e401d0ae6d40ac84f96e4ce2f4eb2595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   collectibleCollectAudio: {fileID: 8300000, guid: bf527d825758e5b4ca7b69f5a02d9a56,
