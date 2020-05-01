@@ -3,27 +3,31 @@ using UnityEngine;
 using static Platformer.Core.Simulation;
 
 namespace Platformer.Mechanics {
-    /// <summary>
-    /// A simple controller for enemies. Provides movement control over a patrol path.
-    /// </summary>
-    [RequireComponent(typeof(AnimationController), typeof(Collider2D))]
-    public class EnemyController : MonoBehaviour {
+    public class EnemyController : KinematicObject {
         public PatrolPath path;
-        public AudioClip ouch;
+        [SerializeField]
+        private AudioClip _ouchClip;
 
-        internal PatrolPath.Mover mover;
-        internal AnimationController control;
-        internal Collider2D _collider;
-        internal AudioSource _audio;
-        private SpriteRenderer spriteRenderer;
+        [SerializeField]
+        private Sprite[] _enemySprites;
+
+        private PatrolPath.Mover _mover;
+        private Collider2D _collider;
+        private AudioSource _audio;
+        private SpriteRenderer _spriteRenderer;
+
+        public float maxSpeed = 7;
+
+        public Vector2 move;
 
         public Bounds Bounds => _collider.bounds;
 
         private void Awake() {
-            control = GetComponent<AnimationController>();
             _collider = GetComponent<Collider2D>();
             _audio = GetComponent<AudioSource>();
-            spriteRenderer = GetComponent<SpriteRenderer>();
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+            int index = Random.Range(0, _enemySprites.Length);
+            _spriteRenderer.sprite = _enemySprites[index];
         }
 
         private void OnCollisionEnter2D(Collision2D collision) {
@@ -35,15 +39,31 @@ namespace Platformer.Mechanics {
             }
         }
 
-        private void Update() {
+        protected override void Update() {
             if (path != null) {
-                if (mover == null) {
-                    mover = path.CreateMover(control.maxSpeed * 0.5f);
+                if (_mover == null) {
+                    _mover = path.CreateMover(maxSpeed * 0.5f);
                 }
-
-                control.move.x = Mathf.Clamp(mover.Position.x - transform.position.x, -1, 1);
+                move.x = Mathf.Clamp(_mover.Position.x - transform.position.x, -1, 1);
             }
+            base.Update();
         }
 
+        protected override void ComputeVelocity() {
+            if (move.x > 0.01f) {
+                _spriteRenderer.flipX = false;
+            } else if (move.x < -0.01f) {
+                _spriteRenderer.flipX = true;
+            }
+
+            targetVelocity = move * maxSpeed;
+        }
+
+        public void Die() {
+            _collider.enabled = false;
+            if (_audio && _ouchClip) {
+                _audio.PlayOneShot(_ouchClip);
+            }
+        }
     }
 }
