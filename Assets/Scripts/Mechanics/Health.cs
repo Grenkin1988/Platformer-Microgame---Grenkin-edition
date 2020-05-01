@@ -38,6 +38,7 @@ namespace Platformer.Mechanics {
         }
 
         public void Die() {
+            currentHP = 0;
             Schedule<PlayerDeath>();
         }
 
