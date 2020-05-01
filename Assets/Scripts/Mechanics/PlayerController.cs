@@ -22,6 +22,7 @@ namespace Platformer.Mechanics {
         /// Initial jump velocity at the start of a jump.
         /// </summary>
         public float jumpTakeOffSpeed = 7;
+        public float initialJumpTakeOffSpeed;
 
         public JumpState jumpState = JumpState.Grounded;
         private bool stopJump;
@@ -47,6 +48,7 @@ namespace Platformer.Mechanics {
             collider2d = GetComponent<Collider2D>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             animator = GetComponent<Animator>();
+            initialJumpTakeOffSpeed = jumpTakeOffSpeed;
         }
 
         protected override void Update() {
