@@ -21,7 +21,7 @@ namespace Platformer.UI {
         /// The game controller.
         /// </summary>
         public GameController gameController;
-        private bool showMainCanvas = false;
+        private bool showMainCanvas = true;
 
         private void OnEnable() {
             _ToggleMainMenu(showMainCanvas);
