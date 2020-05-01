@@ -17,4 +17,12 @@ namespace Platformer.Gameplay {
             AudioSource.PlayClipAtPoint(token.tokenCollectAudio, token.transform.position);
         }
     }
+
+    public class PlayerCollectibleCollision : Simulation.Event<PlayerCollectibleCollision> {
+        public Collectible Collectible;
+
+        public override void Execute() {
+            Collectible.PlayCollectedSound();
+        }
+    }
 }
