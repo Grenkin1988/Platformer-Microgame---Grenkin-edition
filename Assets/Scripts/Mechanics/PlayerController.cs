@@ -42,6 +42,11 @@ namespace Platformer.Mechanics {
 
         public Bounds Bounds => collider2d.bounds;
 
+        [SerializeField]
+        private TMPro.TMP_Text _health;
+        [SerializeField]
+        private TMPro.TMP_Text _score;
+
         private void Awake() {
             health = GetComponent<Health>();
             audioSource = GetComponent<AudioSource>();
@@ -64,7 +69,13 @@ namespace Platformer.Mechanics {
                 move.x = 0;
             }
             UpdateJumpState();
+            UpdateUI();
             base.Update();
+        }
+
+        private void UpdateUI() {
+            _health.text = $"Health: {health.CurrentHP}";
+            _score.text = $"Score: {currentScore}";
         }
 
         private void UpdateJumpState() {

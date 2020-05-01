@@ -40,13 +40,13 @@ namespace Platformer.UI {
         private void _ToggleMainMenu(bool show) {
             if (show) {
                 Time.timeScale = 0;
-                mainMenu.gameObject.SetActive(true);
+                mainMenu.SetMenuActive(true);
                 foreach (var i in gamePlayCanvasii) {
                     i.gameObject.SetActive(false);
                 }
             } else {
                 Time.timeScale = 1;
-                mainMenu.gameObject.SetActive(false);
+                mainMenu.SetMenuActive(false);
                 foreach (var i in gamePlayCanvasii) {
                     i.gameObject.SetActive(true);
                 }

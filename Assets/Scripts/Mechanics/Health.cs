@@ -20,6 +20,8 @@ namespace Platformer.Mechanics {
         [SerializeField]
         private int currentHP;
 
+        public int CurrentHP => currentHP;
+
         /// <summary>
         /// Increment the HP of the entity.
         /// </summary>

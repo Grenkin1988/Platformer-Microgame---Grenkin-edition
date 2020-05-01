@@ -18,6 +18,7 @@ namespace Platformer.Gameplay {
             }
 
             player.health.Increment();
+            player.currentScore = 0;
             player.Teleport(model.spawnPoint.transform.position);
             player.jumpState = PlayerController.JumpState.Grounded;
             player.animator.SetBool("dead", false);
