@@ -37,6 +37,8 @@ namespace Platformer.Mechanics {
         internal Animator animator;
         private readonly PlatformerModel model = Simulation.GetModel<PlatformerModel>();
 
+        public int currentScore = 0;
+
         public Bounds Bounds => collider2d.bounds;
 
         private void Awake() {
@@ -118,6 +120,10 @@ namespace Platformer.Mechanics {
             Jumping,
             InFlight,
             Landed
+        }
+
+        public void ChangeScore(int points) {
+            currentScore = Mathf.Clamp(currentScore + points, 0, int.MaxValue);
         }
     }
 }

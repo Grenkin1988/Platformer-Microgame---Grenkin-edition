@@ -19,10 +19,12 @@ namespace Platformer.Gameplay {
     }
 
     public class PlayerCollectibleCollision : Simulation.Event<PlayerCollectibleCollision> {
-        public Collectible Collectible;
+        public PlayerController Player { get; set; }
+        public Collectible Collectible { get; set; }
 
         public override void Execute() {
             Collectible.PlayCollectedSound();
+            Collectible.ApplyPlayerEffect(Player);
         }
     }
 }

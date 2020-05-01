@@ -35,6 +35,8 @@ namespace Platformer.Mechanics {
             }
         }
 
+        public abstract void ApplyPlayerEffect(PlayerController player);
+
         private void OnPlayerEnter(PlayerController player) {
             if (Collected) {
                 return;
@@ -45,6 +47,7 @@ namespace Platformer.Mechanics {
             //send an event into the gameplay system to perform some behaviour.
             var ev = Schedule<PlayerCollectibleCollision>();
             ev.Collectible = this;
+            ev.Player = player;
         }
     }
 }
