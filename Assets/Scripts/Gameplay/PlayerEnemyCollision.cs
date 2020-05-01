@@ -12,7 +12,6 @@ namespace Platformer.Gameplay {
     public class PlayerEnemyCollision : Simulation.Event<PlayerEnemyCollision> {
         public EnemyController enemy;
         public PlayerController player;
-        private PlatformerModel model = Simulation.GetModel<PlatformerModel>();
 
         public override void Execute() {
             bool willHurtEnemy = player.Bounds.center.y >= enemy.Bounds.max.y;
@@ -32,7 +31,7 @@ namespace Platformer.Gameplay {
                     player.Bounce(2);
                 }
             } else {
-                Schedule<PlayerDeath>();
+                player.DamagePlayer();
             }
         }
     }

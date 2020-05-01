@@ -32,19 +32,24 @@ namespace Platformer.Mechanics {
         /// </summary>
         public void Decrement() {
             currentHP = Mathf.Clamp(currentHP - 1, 0, maxHP);
-            if (currentHP == 0) {
-                var ev = Schedule<HealthIsZero>();
-                ev.health = this;
+            Schedule<PlayerHurt>();
+            if (currentHP <= 0) {
+                Die();
             }
+        }
+
+        private void Die() {
+            Schedule<PlayerDeath>();
         }
 
         /// <summary>
         /// Decrement the HP of the entitiy until HP reaches 0.
         /// </summary>
-        public void Die() {
-            while (currentHP > 0) {
-                Decrement();
+        public void Damage() {
+            if(currentHP <= 0) {
+                Die();
             }
+            Decrement();
         }
 
         private void Awake() {
