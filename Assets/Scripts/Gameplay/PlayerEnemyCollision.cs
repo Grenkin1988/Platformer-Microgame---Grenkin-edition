@@ -31,7 +31,7 @@ namespace Platformer.Gameplay {
                     player.Bounce(2);
                 }
             } else {
-                player.DamagePlayer();
+                Schedule<PlayerHurt>();
             }
         }
     }

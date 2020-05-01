@@ -32,13 +32,12 @@ namespace Platformer.Mechanics {
         /// </summary>
         public void Decrement() {
             currentHP = Mathf.Clamp(currentHP - 1, 0, maxHP);
-            Schedule<PlayerHurt>();
             if (currentHP <= 0) {
                 Die();
             }
         }
 
-        private void Die() {
+        public void Die() {
             Schedule<PlayerDeath>();
         }
 

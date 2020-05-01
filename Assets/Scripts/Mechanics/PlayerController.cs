@@ -125,9 +125,5 @@ namespace Platformer.Mechanics {
         public void ChangeScore(int points) {
             currentScore = Mathf.Clamp(currentScore + points, 0, int.MaxValue);
         }
-
-        public void DamagePlayer() {
-            health.Damage();
-        }
     }
 }
